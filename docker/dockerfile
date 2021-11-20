@@ -1,0 +1,6 @@
+FROM php:8.0.13-fpm-alpine
+#RUN apt-get update && apt-get install -y curl zip //ver que coño pasa con esto a ver si hace falta o no
+#WORKDIR /app
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+COPY ./ /var/www/html
+ENV PATH /var/www/html/bin:$PATH

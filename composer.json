@@ -1,0 +1,27 @@
+{
+    "name": "yeiffet/mowerscontroller",
+    "license": "MIT",
+    "type": "project",
+    "description": "Technical Challenge for SEAT:CODE",
+    "authors": [
+        {
+            "name": "Jafet Juan López Rodríguez",
+            "email": "lopezrodriguezjj@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MowersController\\": "src/",
+            "MowersController\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "phpunit/phpunit": "9.5.1",
+        "symfony/console": "5.3.4",
+        "beberlei/assert": "^2.8"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}

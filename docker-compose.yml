@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  mowers_controller:
+    build:
+      context: .
+      dockerfile: docker/dockerfile
+    container_name: mowers_controller
+    volumes:
+      - ./:/var/www/html
