@@ -9,7 +9,6 @@ class Application extends BaseApplication
 {
     public function __construct(iterable $commands = [])
     {
-        var_dump(count($commands));
         foreach ($commands as $command) {
             $this->add($command);
         }

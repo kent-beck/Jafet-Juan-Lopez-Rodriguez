@@ -12,8 +12,3 @@ services:
   MowersController\Infrastructure\Application\Application:
     public: true
     arguments: [!tagged_iterator command]
-
-  MowersController\Domain\Service\:
-    autowire: true
-    autoconfigure: true
-    resource: '../src/Domain/Service/*'

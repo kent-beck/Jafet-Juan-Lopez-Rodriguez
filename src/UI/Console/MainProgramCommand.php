@@ -16,7 +16,7 @@ class MainProgramCommand extends Command
         $this
             ->setName(self::NAME)
             ->setDescription('Inits the application')
-            ->setHelp('Inits the application with the steps that you need to control and spawns your mowers');
+            ->setHelp('Inits the application loading the instructions on the file data for control your mowers');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -28,7 +28,7 @@ class MainProgramCommand extends Command
         ]);
         $output->write('The project is running without problems, start programming!');
         $output->writeln('');
-    
+        
         return Command::SUCCESS;
     }
 }
