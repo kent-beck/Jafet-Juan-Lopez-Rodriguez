@@ -9,10 +9,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MainProgramCommand extends Command
 {
+    public const NAME = 'mower:main';
+    
     protected function configure()
     {
         $this
-            ->setName('mower:main')
+            ->setName(self::NAME)
             ->setDescription('Inits the application')
             ->setHelp('Inits the application with the steps that you need to control and spawns your mowers');
     }

@@ -1,0 +1,19 @@
+services:
+  _defaults:
+    autowire: true
+
+  _instanceof:
+    Symfony\Component\Console\Command\Command:
+      tags: ['command']
+
+  MowersController\:
+    resource: '../src/'
+
+  MowersController\Infrastructure\Application\Application:
+    public: true
+    arguments: [!tagged_iterator command]
+
+  MowersController\Domain\Service\:
+    autowire: true
+    autoconfigure: true
+    resource: '../src/Domain/Service/*'
