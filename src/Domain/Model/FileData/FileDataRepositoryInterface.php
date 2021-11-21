@@ -4,6 +4,6 @@ namespace MowersController\Domain\Model\FileData;
 
 interface FileDataRepositoryInterface
 {
-    public function addData(int $result): void;
-    public function getData(int $result): array;
+    public function addData(string $result): void;
+    public function getData(): InputData;
 }

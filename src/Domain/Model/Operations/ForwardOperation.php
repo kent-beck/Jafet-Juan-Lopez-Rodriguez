@@ -6,11 +6,16 @@ use MowersController\Domain\Model\GrassField\GrassField;
 
 class ForwardOperation implements Operation
 {
-    private const OPERATION_NAME = 'Forward';
-    private const OPERATION_LETTER = 'M';
+    public const OPERATION_NAME = 'Forward';
+    public const OPERATION_LETTER = 'M';
     private GrassField $field;
     
-    public function __construct(GrassField $field)
+    public static function create(GrassField $field): self
+    {
+        return new self($field);
+    }
+    
+    private function __construct(GrassField $field)
     {
         $this->field = $field;
     }

@@ -6,11 +6,16 @@ use MowersController\Domain\Model\Entities\MowerEntity;
 
 class TurnRightOperation implements Operation
 {
-    private const OPERATION_NAME = 'Right';
-    private const OPERATION_LETTER = 'R';
+    public const OPERATION_NAME = 'Right';
+    public const OPERATION_LETTER = 'R';
     private MowerEntity $mowerEntity;
     
-    public function __construct(MowerEntity $mowerEntity)
+    public static function create(MowerEntity $mowerEntity): self
+    {
+        return new self($mowerEntity);
+    }
+    
+    private function __construct(MowerEntity $mowerEntity)
     {
         $this->mowerEntity = $mowerEntity;
     }

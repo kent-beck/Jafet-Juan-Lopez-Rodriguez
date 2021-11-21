@@ -3,6 +3,10 @@
 namespace MowersController\Domain\Model\Orientation\OrientationOperation;
 
 use MowersController\Domain\Model\Entities\MowerEntity;
+use MowersController\Domain\Model\Operations\MoveOperations\ForwardFromEast;
+use MowersController\Domain\Model\Operations\MoveOperations\ForwardFromNorth;
+use MowersController\Domain\Model\Operations\MoveOperations\ForwardFromSouth;
+use MowersController\Domain\Model\Operations\MoveOperations\ForwardFromWest;
 use MowersController\Domain\Model\Orientation\OrientationVisitor;
 use MowersController\Domain\Model\Operations\MoveOperations\MoveOperation;
 
@@ -25,23 +29,23 @@ class ForwardOrientationOperation implements OrientationVisitor
         return $this->mower->getOrientation()->accept($this);
     }
     
-    public function visitNorth()
+    public function visitNorth(): MoveOperation
     {
-        return new ForwardFromNorth();
+        return ForwardFromNorth::create();
     }
     
-    public function visitSouth()
+    public function visitSouth(): MoveOperation
     {
-        return new ForwardFromSouth();
+        return ForwardFromSouth::create();
     }
     
-    public function visitEast()
+    public function visitEast(): MoveOperation
     {
-        return new ForwardFromEast();
+        return ForwardFromEast::create();
     }
     
-    public function visitWest()
+    public function visitWest(): MoveOperation
     {
-        return new ForwardFromWest();
+        return ForwardFromWest::create();
     }
 }

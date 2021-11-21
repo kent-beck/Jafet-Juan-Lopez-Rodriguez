@@ -6,37 +6,28 @@ namespace MowersController\Domain\Model\FileData;
 use MowersController\Domain\Model\Coordinates\Coordinates;
 use MowersController\Domain\Model\Orientation\Orientation;
 
-class InputData
+class MowerInputData
 {
-    private Coordinates $fieldCoords;
     private Coordinates $spawnCoords;
-    private Orientation $orientation;
+    private Orientation $startOrientation;
     private array $movCommands = [];
     
     private function __construct(
-        Coordinates $fieldCoords,
         Coordinates $spawnCoords,
         Orientation $orientation,
         array $movCommands
     ) {
-        $this->fieldCoords = $fieldCoords;
         $this->spawnCoords = $spawnCoords;
-        $this->orientation = $orientation;
+        $this->startOrientation = $orientation;
         $this->movCommands = $movCommands;
     }
     
-    public static function createWithData(
-        Coordinates $fieldCoords,
+    public static function createWithSpawnDataAndMovements(
         Coordinates $spawnCoords,
         Orientation $orientation,
         array $movCommands
     ): self {
-        return new self($fieldCoords, $spawnCoords, $orientation, $movCommands);
-    }
-    
-    public function getFieldCoords(): Coordinates
-    {
-        return $this->fieldCoords;
+        return new self($spawnCoords, $orientation, $movCommands);
     }
     
     public function getSpawnCoords(): Coordinates
@@ -44,9 +35,9 @@ class InputData
         return $this->spawnCoords;
     }
     
-    public function getOrientation(): Orientation
+    public function getStartOrientation(): Orientation
     {
-        return $this->orientation;
+        return $this->startOrientation;
     }
     
     public function getMovCommands(): array

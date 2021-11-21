@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace MowersController\Domain\Model\Entities;
 
 use MowersController\Domain\Model\Orientation\Orientation;
+use MowersController\Domain\Model\Orientation\OrientationFactory;
 
 class MowerEntity implements Entity
 {
     private Orientation $orientation;
     
-    public static function spawnWithOrientation(Orientation $initialOrientation): self
+    public static function createWithOrientation(Orientation $initialOrientation): self
     {
         return new self($initialOrientation);
     }
@@ -26,12 +27,12 @@ class MowerEntity implements Entity
     
     public function turnLeft(): void
     {
-    
+        $this->orientation = OrientationFactory::createInstance()->getOrientation($this->orientation->left());
     }
     
     public function turnRight(): void
     {
-    
+        $this->orientation = OrientationFactory::createInstance()->getOrientation($this->orientation->right());
     }
     
     public function getOrientation(): Orientation

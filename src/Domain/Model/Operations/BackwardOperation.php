@@ -6,11 +6,16 @@ use MowersController\Domain\Model\GrassField\GrassField;
 
 class BackwardOperation implements Operation
 {
-    private const OPERATION_NAME = 'Backward';
-    private const OPERATION_LETTER = 'B';
+    public const OPERATION_NAME = 'Backward';
+    public const OPERATION_LETTER = 'B';
     private GrassField $field;
     
-    public function __construct(GrassField $field)
+    public static function create(GrassField $field): self
+    {
+        return new self($field);
+    }
+    
+    private function __construct(GrassField $field)
     {
         $this->field = $field;
     }

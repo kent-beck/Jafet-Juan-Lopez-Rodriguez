@@ -81,11 +81,11 @@ test: test_unit
 
 ## Run unit&integration tests.
 test_unit:
-	docker-compose exec --user ${UID}:${GID} ${DOCKER_PHP_SERVICE} vendor/bin/phpunit
+	docker-compose exec --user ${UID}:${GID} ${DOCKER_PHP_SERVICE} ./bin/phpunit
 
 ## Run unit tests with coverage
 test_unit_coverage:
-	docker-compose exec --user ${UID}:${GID} ${DOCKER_PHP_SERVICE} vendor/bin/phpunit --coverage-text
+	docker-compose exec --user ${UID}:${GID} ${DOCKER_PHP_SERVICE} ./bin/phpunit --coverage-text
 
 #########|
 # OTHERS #

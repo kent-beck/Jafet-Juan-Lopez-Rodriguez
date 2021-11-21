@@ -2,10 +2,12 @@
 
 namespace MowersController\Domain\Model\Orientation;
 
+use MowersController\Domain\Model\Operations\MoveOperations\MoveOperation;
+
 interface OrientationVisitor
 {
-    public function visitNorth();
-    public function visitSouth();
-    public function visitWest();
-    public function visitEast();
+    public function visitNorth(): MoveOperation;
+    public function visitSouth(): MoveOperation;
+    public function visitWest(): MoveOperation;
+    public function visitEast(): MoveOperation;
 }

@@ -11,7 +11,7 @@ class ForwardFromNorth extends MoveOperation
     
     protected function changedRow(): int
     {
-        return -1;
+        return 1;
     }
 
     protected function changedColumn(): int

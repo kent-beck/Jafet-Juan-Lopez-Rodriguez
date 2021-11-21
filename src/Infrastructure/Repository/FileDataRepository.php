@@ -3,30 +3,35 @@ declare(strict_types=1);
 
 namespace MowersController\Infrastructure\Repository;
 
-class FileDataRepository
+use MowersController\Domain\Model\FileData\FileDataRepositoryInterface;
+use MowersController\Domain\Model\FileData\InputData;
+use MowersController\Infrastructure\Service\TransformInputDataService;
+
+class FileDataRepository implements FileDataRepositoryInterface
 {
+    private const DATA_DIRECTORY = 'data/';
+    private const DIRECTORY_LEVEL = __DIR__.'/../../../';
     private string $file;
-    private array $data;
+    private string $data;
+    private TransformInputDataService $inputDataService;
     
-    public function __construct(string $file)
+    public function __construct(string $file, TransformInputDataService $inputDataService)
     {
-        if (false === is_writable($file)) {
-            throw new \Exception('Unwritable file');
-        }
-        $data = unserialize(file_get_contents($file));
-        
+        $file = self::DIRECTORY_LEVEL.self::DATA_DIRECTORY.$file;
+        $data = file_get_contents($file);
         $this->file = $file;
         $this->data = empty($data) ? [] : $data;
+        $this->inputDataService = $inputDataService;
     }
     
-    public function add(int $result): void
+    public function addData(string $result): void
     {
-        $this->data[] = $result;
-        file_put_contents($this->file, serialize($this->data));
+        $this->data = $result;
+        file_put_contents($this->file, $this->data);
     }
     
-    public function getData(): array
+    public function getData(): InputData
     {
-        return $this->data;
+        return $this->inputDataService->execute($this->data);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace MowersController\Domain\Model\Operations\MoveOperations;
 
 class BackwardFromWest extends MoveOperation

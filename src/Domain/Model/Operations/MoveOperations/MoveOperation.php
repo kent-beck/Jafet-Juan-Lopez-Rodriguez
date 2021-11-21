@@ -23,10 +23,10 @@ abstract class MoveOperation
 
     private function  returnValidCoordinate(GrassField $field, Coordinates $coordinates): Coordinates
     {
-        $row = min($field->getMapSize()->row()-1, $coordinates->row());
+        $row = min($field->getMapSize()->row(), $coordinates->row());
         $row = max(0, $row);
 
-        $column = min($field->getMapSize()->column()-1, $coordinates->column());
+        $column = min($field->getMapSize()->column(), $coordinates->column());
         $column = max(0, $column);
 
         return Coordinates::createWithXAndY($row, $column);
