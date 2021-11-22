@@ -51,3 +51,7 @@ If you uncomment the line 24 and 27 of
 > \MowersController\Domain\Service\RotateOrMoveMowerService
 
 You can see the render field of the positions changes of the mower only for debug purposes, of course!
+
+## Author
+Code made by: Jafet Juan López Rodríguez
+Email: lopezrodriguezjj@gmail.com
