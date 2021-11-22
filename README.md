@@ -44,4 +44,10 @@ This is only what I had in mind but that due to time issues I have not been able
 In principle, when I saw the theme of the test, I was going to try to make it visually more attractive and even do a little challenge with myself and do it in C # with Unity3D since it is one of the things that I usually fiddle with. The problem came in that to execute and distribute such a thing it might have been more cumbersome and even worse since it did not even come close to the specifications. That is why I directly used what I do in my day-to-day life, and I control it perfectly. The project is completely from scratch, both infrastructure and the code itself.
 
 ### About Testing
-Unfortunately I have not had time to do a complete test battery, although the code is used in a greater part with the main services and it is possible that using as I do in them there is a coverage in conditions since there is hardly any class mockup .
+Unfortunately I have not had time to do a complete test battery, although the code is used in a greater part with the main services and it is possible that using as I do in them there is a coverage in conditions since there is hardly any class mockup.
+
+#### Tip
+If you uncomment the line 24 and 27 of
+> \MowersController\Domain\Service\RotateOrMoveMowerService
+
+You can see the render field of the positions changes of the mower only for debug purposes, of course!
