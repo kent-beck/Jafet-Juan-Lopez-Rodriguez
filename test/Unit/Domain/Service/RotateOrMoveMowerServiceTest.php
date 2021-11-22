@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace MowersController\Unit\Domain\Service;
 
+use MowersController\Domain\Exceptions\MoveOperation\MowerOutOfBoundsException;
 use MowersController\Domain\Exceptions\RotateOrMoveMower\IncorrectCommandOperationException;
 use MowersController\Domain\Model\Coordinates\Coordinates;
 use MowersController\Domain\Model\Entities\MowerEntity;
 use MowersController\Domain\Model\GrassField\GrassField;
+use MowersController\Domain\Model\Orientation\North;
 use MowersController\Domain\Model\Orientation\South;
 use MowersController\Domain\Service\RotateOrMoveMowerService;
 use PHPUnit\Framework\TestCase;
@@ -45,6 +47,20 @@ class RotateOrMoveMowerServiceTest extends TestCase
         $movements = ['X'];
         
         $this->expectException(IncorrectCommandOperationException::class);
+        
+        $this->testClass->moveWithAllOperations($grassField, $movements);
+    }
+    
+    /** @test */
+    public function given_movement_operations_when_mower_go_out_of_field_then_throw_out_of_bounds_exception(): void
+    {
+        $grassField = GrassField::createMapWithCoordinates(Coordinates::createWithXAndY(6,6));
+        $mower = MowerEntity::createWithOrientation(North::create());
+        $mowerCoords = Coordinates::createWithXAndY(3,3);
+        $grassField->spawnMowerOnField($mower, $mowerCoords);
+        $movements = ['M','M','M','M','M','M'];
+        
+        $this->expectException(MowerOutOfBoundsException::class);
         
         $this->testClass->moveWithAllOperations($grassField, $movements);
     }

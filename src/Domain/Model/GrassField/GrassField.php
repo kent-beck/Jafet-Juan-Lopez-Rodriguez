@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MowersController\Domain\Model\GrassField;
 
+use MowersController\Domain\Exceptions\MoveOperation\MowerOutOfBoundsException;
 use MowersController\Domain\Model\Coordinates\Coordinates;
 use MowersController\Domain\Model\Entities\MowerEntity;
 use MowersController\Domain\Model\Entities\VoidGridCellEntity;
@@ -61,18 +62,21 @@ class GrassField
         return $this->grid[$this->mowerCoordinates->row()][$this->mowerCoordinates->column()];
     }
     
+    /** @throws MowerOutOfBoundsException */
     public function moveForward()
     {
         $operation = (ForwardOrientationOperation::create($this->getMowerEntityOnField()))->execute();
         $this->executeMovementOperation($operation);
     }
     
+    /** @throws MowerOutOfBoundsException */
     public function moveBackward()
     {
         $operation = (BackwardOrientationOperation::create($this->getMowerEntityOnField()))->execute();
         $this->executeMovementOperation($operation);
     }
     
+    /** @throws MowerOutOfBoundsException */
     public function executeMovementOperation(MoveOperation $moveOperation)
     {
         $coordinates                                                   = $moveOperation->execute($this);
